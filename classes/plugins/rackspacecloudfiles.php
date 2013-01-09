@@ -42,7 +42,7 @@ class rackspaceCloudFiles implements xrowCDNInterface
     {
     	$this->container = $this->conn->get_container( $namespace );
     	$this->objects = $this->container->get_objects(0, NULL, NULL, $path);
-    	return false;
+    	return $this->objects;
     }
 
     /**
