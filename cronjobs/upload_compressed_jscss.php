@@ -14,6 +14,8 @@ foreach( $clusterFiles as $clusterFile ) {
 // Get all local compressed JS and CSS files
 //exec( 'find . -regex "./var.*cache/public.*\.\(css\|js\)" -print', $files );
 exec( 'find . -regex "./.*\.\(css\|js\)" -print', $files );
+exec( 'find . -regex "./extension.*\.\(png\|gif\|jpeg\|jpg\)" -print', $images );
+$files = array_merge( $files, $images );
 
 $time        = new DateTime();
 $syncTimeVar = 'xrowcdn_compressed_jscss_time';
