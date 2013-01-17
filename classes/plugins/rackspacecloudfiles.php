@@ -72,6 +72,15 @@ class rackspaceCloudFiles implements xrowCDNInterface
     {
     		$this->container = $this->conn->get_container( $bucket );
     		$this->object = $this->container->create_object($remotepath);
+
+    		$mime_types = array(
+    		    'css' => 'text/css',
+    		    'js'  => 'application/javascript'
+    		);
+    		$ext = strtolower( array_pop( explode( '.', $localfile ) ) );
+    		if( isset( $mime_types[ $ext ] ) ) {
+    		    $this->object->content_type = $mime_types[ $ext ];
+    		}
     		$this->object->load_from_filename($localfile);
     }
 

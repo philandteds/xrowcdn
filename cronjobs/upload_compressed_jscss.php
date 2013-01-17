@@ -5,8 +5,15 @@
  * @date    09 Jan 2013
  **/
 
+$clusterFileHandler = eZClusterFileHandler::instance( 'var' );
+$clusterFiles       = $clusterFileHandler->getFileList( array( 'ezjscore' ) );
+foreach( $clusterFiles as $clusterFile ) {
+	$clusterFileHandler->fileFetch( $clusterFile );
+}
+
 // Get all local compressed JS and CSS files
-exec( 'find . -regex "./var.*cache/public.*\.\(css\|js\)" -print', $files );
+//exec( 'find . -regex "./var.*cache/public.*\.\(css\|js\)" -print', $files );
+exec( 'find . -regex "./.*\.\(css\|js\)" -print', $files );
 
 $time        = new DateTime();
 $syncTimeVar = 'xrowcdn_compressed_jscss_time';
